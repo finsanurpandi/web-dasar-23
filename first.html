@@ -2,11 +2,76 @@
 <html>
 <head>
     <title>Latihan HTML</title>
+    <style>
+        p{
+            color: blue;
+        }
+        #text-merah {
+            color: red;
+        }
+
+        .text-bold {
+            font-weight: bold;
+        }
+
+        /* a:link, a:visited {
+            color:blue;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: greenyellow;
+            text-decoration: line-through;
+        }
+
+        a:active {
+            color: yellow;
+        } */
+
+        .btn {
+            text-decoration: none;
+            padding: 5px 20px;
+            border-radius: 8px;
+        }
+
+        .btn-primary:link, .btn-primary:visited {
+            background-color: blue;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: green;
+            color: yellow;
+        }
+
+        .btn-primary:active {
+            background-color: yellow;
+            color: green;
+        }
+        .box {
+            height: 100px;
+            width: 75px;
+            background-color: red;
+            margin-left: 100px;
+            padding-left: 25px;
+        }
+    </style>
+    <link rel="stylesheet" href="" type="text/css"/>
 </head>
 <body>
+    <!-- <a href="#">Tombol</a> -->
+     <div class="box">text</div>
+    <br />
+    <a href="#" class="btn btn-primary">Tombol</a>
+    <button class="btn btn-primary">Tombol Baru</button>
+    <br/>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis sit vel aut impedit doloremque, quidem libero possimus sapiente earum nostrum recusandae. Ea nesciunt aspernatur dolore dolores magni, id molestias delectus!</p>
+    <br/>
+    <p id="text-merah" class="text-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis sit vel aut impedit doloremque, quidem libero possimus sapiente earum nostrum recusandae. Ea nesciunt aspernatur dolore dolores magni, id molestias delectus!</p>
+    <br/>
     <marquee>Running Text</marquee>
     <h1>Heading 1</h1>
-    <h2>Heading 2</h2>
+    <h2 style="color:red;">Heading 2</h2>
     <h3>Heading 3</h3>
     <h4>Heading 4</h4>
     <h5>Heading 5</h5>
@@ -102,8 +167,56 @@
     </table>
     <br/>
     <br/>
+    <form action="#" method="POST" enctype="multipart/form-data">
+        <div>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required/>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" min="8" required/>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required/>
+        </div>
+        <div>
+            <label for="age">Age</label>
+            <input type="number" name="age" id="age" required/>
+        </div>
+        <div>
+            <label for="dateOfBirth">Date of Birth</label>
+            <input type="date" name="birth" id="dateOfBirth" required/>
+        </div>
+        <div>
+            <label for="kelas">Kelas</label>
+            <select id="kelas" name="kelas" required>
+                <option value="A">Kelas A</option>
+                <option value="B">Kelas B</option>
+                <option value="C">Kelas C</option>
+            </select>
+        </div>
+        <div>
+            <label for="gender">Gender</label>
+            <input type="radio" name="gender" id="gender" value="L" required/>Pria
+            <input type="radio" name="gender" id="gender" value="P" required/>Wanita
+        </div>
+        <div>
+            <label for="hobbies">Hobbies</label>
+            <input type="checkbox" name="hobbies[]" id="hobbies" value="Traveling"/>Traveling
+            <input type="checkbox" name="hobbies[]" id="hobbies" value="olahraga"/>Olahraga
+            <input type="checkbox" name="hobbies[]" id="hobbies" value="Melukis"/>Melukis
+        </div>
+        <div>
+            <label for="photo">Photo</label>
+            <input type="file" name="photo" id="photo" accept="image/*,application/pdf"/>
+        </div>
+        <div>
+            <input type="reset" name="reset" value="RESET"/>
+            <input type="submit" name="submit" value="SUBMIT"/>
+        </div>
+    </form>
     <br/>
-    <br/>
-    <br/>
+    
 </body>
 </html>
