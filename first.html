@@ -40,7 +40,10 @@
         }
 
         .btn-primary:hover {
-            background-color: green;
+            /* background-color: green; */
+            animation-name: color_changing;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
             color: yellow;
         }
 
@@ -48,12 +51,87 @@
             background-color: yellow;
             color: green;
         }
+
+        @keyframes color_changing {
+            0% {
+                background-color: red;
+            }
+            25% {
+                background-color: blue;
+            }
+            50% {
+                background-color: yellow;
+            }
+            75% {
+                background-color: magenta;
+            }
+            100% {
+                background-color: cyan;
+            }
+        }
         .box {
-            height: 100px;
-            width: 75px;
-            background-color: red;
+            height: 200px;
+            width: 175px;
+            /* background-color: rgba(255,255,0, 1); */
+            /* background: -webkit-linear-gradient(right top, red, blue, yellow, green, cyan, magenta); */
+            background: -webkit-radial-gradient(red, blue, yellow, green, cyan, magenta);
             margin-left: 100px;
             padding-left: 25px;
+        }
+
+        body {
+            background-color: green;
+        }
+
+        .box2 {
+            height: 100px;
+            width: 100px;
+            background-color: rgba(255,255,0, 1);
+            position: relative;
+            animation-name: moving_box;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease;
+            animation-direction: alternate-reverse;
+        }
+
+        @keyframes moving_box {
+            /* from {
+                left:0px
+            }
+            to {
+                left: 200px;
+            } */
+             0% {
+                left: 0px;
+                top: 0px;
+                rotate: 0deg;
+                border-radius: 0px;
+             }
+             25% {
+                left: 200px;
+                top: 0px;
+                rotate: 90deg;
+                border-radius: 50%;
+             }
+             50% {
+                left: 200px;
+                top: 200px;
+                rotate: 180deg;
+                border-radius: 0px;
+             }
+             75% {
+                left: 0px;
+                top: 200px;
+                rotate: 270deg;
+                border-radius: 50%;
+             }
+             100% {
+                left: 0px;
+                top: 0px;
+                rotate: 360deg;
+                border-radius: 0px;
+             }
         }
     </style>
     <link rel="stylesheet" href="" type="text/css"/>
@@ -61,6 +139,8 @@
 <body>
     <!-- <a href="#">Tombol</a> -->
      <div class="box">text</div>
+     <br/><br/>
+     <div class="box2"></div>
     <br />
     <a href="#" class="btn btn-primary">Tombol</a>
     <button class="btn btn-primary">Tombol Baru</button>

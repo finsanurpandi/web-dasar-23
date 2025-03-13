@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            background-color: aquamarine;
+            flex-direction: column;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            align-items: center;
+            height: 300px;
+        }
+        .container > div.item {
+            border: 1px solid black;
+        }
+
+        .container-grid {
+            display: grid;
+            grid-template-columns: 0.5fr 1fr 2fr;
+            grid-auto-rows: minmax(100px, auto);
+            gap: 10px;
+            background-color: cyan;
+        }
+
+        .container-grid > div.item {
+            border: 1px solid black;
+            background-color: aquamarine;
+        }
+
+        .container-grid > div:nth-child(odd) {
+            background-color: lightcoral;
+        }
+
+        .grid-1 {
+            grid-column-start: 1;
+            grid-column-end: 3;
+            grid-row-start: 1;
+            grid-row-end: 3;
+        }
+        .grid-2 {
+            /* grid-column-start: 3;
+            grid-column-end: 4; */
+            grid-row-start: 1;
+            grid-row-end: 3;
+        }
+
+        .grid-3 {
+            grid-column-start: 1;
+            grid-column-end: 4;
+            /* grid-row-start: 1;
+            grid-row-end: 3; */
+        }
+
+        body {
+            background-color: green;
+        }
+
+        @media only screen and (max-width: 600px) {
+            body {
+                background-color: yellow;
+            }
+        }
+
+        @media only screen and (orientation: potrait) {
+            body {
+                background-color: red;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="container">
+        <div class="item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, quia. Similique ex numquam atque impedit quas? Expedita eius, quod sint quisquam ratione vel libero nesciunt magni? Quos aliquam mollitia aut.</div>
+        <div class="item">Item 2</div>
+        <div class="item">Item 3</div>
+    </div>
+    <div class="container-grid">
+        <div class="grid-1 item">Item 1</div>
+        <div class="grid-2 item">Item 2</div>
+        <div class="grid-3 item">Item 3</div>
+        <div class="grid-4 item">Item 4</div>
+        <div class="grid-5 item">Item 5</div>
+        <div class="grid-6 item">Item 6</div>
+    </div> -->
+</body>
+</html>
