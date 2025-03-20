@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript DOM</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <input type="text" id="text"/>
+    <span id="output-text"></span>
+
+    <div id="div1">
+        <p id="p1">Paragraf 1</p>
+        <p id="p2">Paragraf 2</p>
+    </div>
+
+    <h1 id="h1">Hello</h1>
+    <input type="password" id="pass"/>
+    <button type="button" id="hideShow">SHOW</button>
+    <input type="text" id="newPass" placeholder="New Password"/>
+    <input type="text" id="confPass" placeholder="Confirm Password"/>
+    <span id="error-message"></span>
+    <input type="text" id="countString"/>
+    <span id="total"></span>
+    <script>
+        document.getElementById('countString').onkeyup = function () {
+            document.getElementById('total').innerHTML = this.value.length;
+            console.log(this.value.length);
+        };
+        document.getElementById('confPass').onkeyup = function () {
+            let newPass = document.getElementById('newPass');
+
+            if(newPass.value == this.value) {
+                document.getElementById('error-message').innerHTML = '';
+            } else {
+                document.getElementById('error-message').innerHTML = 'Password tidak sama';
+            }
+        }
+
+        document.getElementById('hideShow').onclick = function () {
+            let pass = document.getElementById('pass');
+            // console.log(pass.type);
+            if(pass.type == 'password') {
+                pass.setAttribute('type', 'text');
+                this.innerHTML = 'HIDE';
+            } else {
+                pass.type = 'password';
+                this.innerHTML = 'SHOW';
+            }
+        };
+        document.getElementById('h1').onclick = function() {
+            this.innerHTML = 'Suryakancana';
+        }
+        document.getElementById('demo').innerHTML = 'Hello World';
+        document.getElementById('text').value = 'Universitas Suryakancana';
+        document.getElementById('output-text').innerHTML = document.getElementById('text').value;
+
+        document.getElementById('demo').style.color = 'red';
+        document.getElementById('demo').style.fontWeight = 'bold';
+
+        let para = document.createElement('p');
+        let node = document.createTextNode('This is new paragraph');
+        para.appendChild(node);
+
+        let element = document.getElementById('div1');
+        // element.appendChild(para);
+        let child = document.getElementById('p2');
+        element.insertBefore(para, child);
+        // element.removeChild(child);
+        element.replaceChild(para, child);
+    </script>
+</body>
+</html>
