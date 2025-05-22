@@ -2,10 +2,10 @@
     require_once 'Database.php';
     $db = new Database();
     $mhs = $db->table('mahasiswa')
-        ->orderBy([
-            'kode_prodi' => 'ASC',
-            'kelas' => 'ASC',
-        ])
+        // ->orderBy([
+        //     'kode_prodi' => 'ASC',
+        //     'kelas' => 'ASC',
+        // ])
         ->get();
 ?>
 
@@ -17,6 +17,22 @@
     <title>Document</title>
 </head>
 <body>
+    <form method="POST" action="<?php $_SERVER['PHP_SELF'] ?>">
+        <label>NPM</label>
+        <input type="text" name="npm" required/>
+        <br/>
+        <label>NAMA</label>
+        <input type="text" name="nama" required/>
+        <br/>
+        <label>KELAS</label>
+        <input type="text" name="kelas" required/>
+        <br/>
+        <label>KODE PRODI</label>
+        <input type="text" name="kode_prodi" required/>
+        <br/>
+        <input type="submit" name="submit"/>
+    </form>
+<hr/>
     <table border="1">
         <thead>
             <tr>
@@ -44,3 +60,18 @@
     </table>
 </body>
 </html>
+
+<?php
+
+if(isset($_POST['submit']))
+{
+    $db->table('mahasiswa')
+        ->insert([
+            'npm' => $_POST['npm'],
+            'nama' => $_POST['nama'],
+            'kelas' => $_POST['kelas'],
+            'kode_prodi' => $_POST['kode_prodi'],
+        ]);
+
+    header('Refresh:0');
+}
