@@ -77,6 +77,15 @@ class Database
         // echo $this->query;
     }
 
+    public function first()
+    {
+        $this->query .= ' LIMIT 1';
+
+        $result = $this->mysqli->query($this->query);
+        
+        return $result->fetch_assoc();
+    }
+
     public function insert($arr = array())
     {
         $this->query = str_replace('SELECT * FROM', 'INSERT INTO', $this->query);
@@ -131,7 +140,7 @@ class Database
         // create query
         $this->query .= " (".substr($columns,0, -2).") VALUES ".substr($vals, 0, -2);
 
-        echo $this->query;
+        // echo $this->query;
         // prepare query
         $q = $this->mysqli->prepare($this->query) or die($this->mysqli->error);
 
@@ -139,9 +148,51 @@ class Database
         $q->execute();
 
     }
+
+    public function update($arr = array())
+    {
+        $this->query = str_replace('SELECT * FROM', 'UPDATE', $this->query);
+        // EXPLODE QUERY STATEMENT TO MOVE 'WHERE' TO END OF THE STATEMENT
+        $part = explode('WHERE', $this->query);
+        
+        $val = null;
+        // CREATE FOR SET DATA TO UPDATE
+        foreach ($arr as $key => $value) {
+            $val .= $key."='".$value."', ";
+        }
+
+        // CHECK IF QUERY HAS WHERE STATEMENT
+        if(count($part) == 1) {
+            $this->query = $part[0]." SET ".substr($val, 0, -2);
+        } else {
+            $this->query = $part[0]." SET ".substr($val, 0, -2)." WHERE ".$part[1];
+        }
+        
+        // echo $this->query;
+        // prepare query
+        $q = $this->mysqli->prepare($this->query) or die($this->mysqli->error);
+
+        // eksekusi query
+        $q->execute();
+    }
+
+    public function delete()
+    {
+        $this->query = str_replace('SELECT *', 'DELETE', $this->query);
+
+        // prepare query
+        $q = $this->mysqli->prepare($this->query) or die($this->mysqli->error);
+
+        // eksekusi query
+        $q->execute();
+    }
 }
 
 // $db = new Database();
+// $db->table('mahasiswa')
+//     ->where([
+//         'npm' => '1111111111'
+//     ])->delete();
 // $db->table('mahasiswa')
 //     ->insert([
 //         'kelas' => 'B',

@@ -1,4 +1,5 @@
 <?php
+    ob_start();
     require_once 'Database.php';
     $db = new Database();
     $mhs = $db->table('mahasiswa')
@@ -41,6 +42,7 @@
                 <th>Nama</th>
                 <th>Kelas</th>
                 <th>Kode Prodi</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -54,6 +56,13 @@
                     <td><?= $row['nama'] ?></td>
                     <td><?= $row['kelas'] ?></td>
                     <td><?= $row['kode_prodi'] ?></td>
+                    <td>
+                        <a href="mahasiswa-edit.php?npm=<?=$row['npm']?>">EDIT</a>
+                        <form method="POST" action="<?php $_SERVER['PHP_SELF']?>" onsubmit="return confirm('Apakah anda yakin?');">
+                            <input type="hidden" name="npm" value="<?=$row['npm']?>"/>
+                            <input type="submit" name="delete" value="HAPUS"/>
+                        </form>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
@@ -72,6 +81,16 @@ if(isset($_POST['submit']))
             'kelas' => $_POST['kelas'],
             'kode_prodi' => $_POST['kode_prodi'],
         ]);
+
+    header('Refresh:0');
+}
+
+if(isset($_POST['delete']))
+{
+    $db->table('mahasiswa')
+        ->where([
+            'npm' => $_POST['npm']
+        ])->delete();
 
     header('Refresh:0');
 }
