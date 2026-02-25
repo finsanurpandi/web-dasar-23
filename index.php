@@ -92,6 +92,7 @@ for ($i=0; $i < count($data); $i++) {
         <!-- <input type="submit" name="submit" value="SUBMIT"> -->
         <button>SUBMIT</button>
     </form>
+    <h3>copyright &copy; <?= date('Y') ?></h3>
 </body>
 </html>
 
